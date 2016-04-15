@@ -1,0 +1,39 @@
+﻿<template>
+
+    <div class="container">
+        <form class="form-horizontal">
+            <label class="control-label">First Name:</label>
+            <input type="text" placeholder="First Name" value.bind="FirstName" class="form-control" />
+
+            <label class="control-label">Last Name:</label>
+            <input type="text" placeholder="Last Name" value.bind="LastName" class="form-control" />
+            <p></p>
+
+            <b>Full Name:</b>
+            <tt>${FullName}</tt>
+
+            <p></p>
+            <button class="btn btn-primary" click.trigger="Create()">Create</button>
+        </form>
+    </div>
+    <p></p>
+    <div class="container">
+        <ul>
+            <li repeat.for="Person of People">
+                <span show.bind="$parent.Editing !== $index">
+                    ${Person}
+                    <button click.trigger="$parent.Edit($index)">Edit</button>
+                </span>
+
+                <span show.bind="$parent.Editing === $index">
+                    <input type="text" value.bind="$parent.NewValue" />
+                    <button click.trigger="$parent.Save($index)">Save</button>
+                </span>
+
+                <button click.trigger="$parent.Delete($index)">Delete</button>
+
+            </li>
+        </ul>
+    </div>
+
+</template>
